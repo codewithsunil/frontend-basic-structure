@@ -1,33 +1,28 @@
-// services/apiService.js
-
-import { buildUrl, getHeaders, TIMEOUT } from "../config/apiConfig.js";
+import { buildUrl, getHeaders } from "../config/apiConfig.js";
+import { loader } from "../components/loader.js";
+import { toast } from "../components/toast.js";
 
 export async function apiRequest(endpoint, options = {}) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), TIMEOUT);
+  loader.show();
 
   try {
-    const response = await fetch(buildUrl(endpoint), {
+    const res = await fetch(buildUrl(endpoint), {
       method: options.method || "GET",
       headers: getHeaders(options, options.headers),
       body: options.body ? JSON.stringify(options.body) : null,
-      signal: controller.signal,
     });
 
-    clearTimeout(timeout);
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw {
-        status: response.status,
-        message: errorData.message || "API Error",
-        data: errorData,
-      };
+    if (!res.ok) {
+      const error = await res.json().catch(() => ({}));
+      throw new Error(error.message || "API Error");
     }
 
-    return await response.json();
-  } catch (error) {
-    console.error("API ERROR:", error);
-    throw error;
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+    toast.show(err.message, "error");
+    throw err;
+  } finally {
+    loader.hide();
   }
 }
