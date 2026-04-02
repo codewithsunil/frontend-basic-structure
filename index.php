@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic setup folder structure</title>
-    <script src="env.js?v=<?php echo time(); ?>"></script>
-    <script type="module" src="assets/js/app.js?v=<?php echo time(); ?>"></script>
+    <script src="env.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
   </head>
   <body>
     <h1>Basic setup folder structure</h1>
