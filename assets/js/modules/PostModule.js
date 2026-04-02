@@ -50,15 +50,16 @@ class PostModule {
                 <td>${post.title}</td>
                 <td>${post.body}</td>
                 <td>
-                    <button class="edit"
+                  <div class="btn-group" role="group">
+                    <button class="edit btn btn-sm btn-warning"
                         data-id="${post.id}"
                         data-title="${post.title}"
                         data-body="${post.body}">
                         Edit
                     </button>
-                    <button class="delete" data-id="${post.id}">
+                    <button class="delete btn btn-sm btn-danger" data-id="${post.id}">
                         Delete
-                    </button>
+                    </button></div>
                 </td>
             </tr>
         `,
