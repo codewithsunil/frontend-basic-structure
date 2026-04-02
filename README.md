@@ -1,4 +1,4 @@
-# 🚀 Project Name
+# 🚀 Frontend Basic Structure
 
 A modular **HTML + JavaScript boilerplate** with clean architecture for building scalable web applications (CRUD, dashboards, SaaS, etc.).
 
